@@ -19,7 +19,8 @@
 
 ##### 关闭DHCP
     Edit->Virtual Network Editor
-	选择VMnet8，去掉Use local DHCP service to distribute IP address to VMs选项。点击NAT Settings查看一下GATEWAY地址192.168.75.2。
+	选择VMnet8，去掉Use local DHCP service to distribute IP address to VMs选项。点击NAT Settings查看一下GATEWAY
+	地址192.168.75.2。
 
 ##### 设置centos静态IP
 	涉及到的配置文件，分别是：
@@ -74,7 +75,8 @@
 	-P表示密码，-P '' 就表示空密码，也可以不用-P参数，这样就要三车回车，用-P就一次回车。
 	密钥文件按照默认方式，在主目录/home/hanmeng下的隐藏目录.ssh中生成，
 	分别为id_dsa和id_dsa.pub（公钥）
-	根据配置文件/etc/ssh/sshd_config中的AuthorizedKeysFile项的取值：.ssh/authorized_keys，公钥需要导入到该文件中才能实现校验，如下：
+	根据配置文件/etc/ssh/sshd_config中的AuthorizedKeysFile项的取值：.ssh/authorized_keys，公钥需要导入到该文件中才
+	能实现校验，如下：
  	cat id_dsa.pub >> authorized_keys
 	将id_rsa.pub的内容追加到authorized_keys 中
 ##### 修改权限
@@ -84,7 +86,7 @@
 		设置完本机无密码ssh登陆后，使用ssh-copy-id命令将公钥传送到远程主机上
 	ssh-copy-id user@hostname
 ### JDK
-	jkd一定是1.7以上
+	jdk一定是1.7以上
 ### 配置环境变量
 	JAVA_HOME
 	HADOOP_HOME
@@ -100,6 +102,8 @@
 	重启机器
 	用这个命令查看是否成功，为1是禁用了
 	$ cat /proc/sys/net/ipv6/conf/all/disable_ipv6
+	
+### 配置NTP服务
 
 # hadoop2.7
 	见配置文件夹hadoop。
