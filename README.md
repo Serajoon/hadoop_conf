@@ -2,6 +2,9 @@
 
 ## 软件列表
 *  hadoop2.7
+*  hbase1.1.2
+*  zookeeper3.4.6
+*  hive1.2.1
 
 ## 搭建环境
 * CentOS-7-x86_64-Minimal
@@ -107,6 +110,19 @@
 
 # hadoop2.7
 	见配置文件夹hadoop。
+
+# hbase1.1.2
+
+# zookeeper3.4.6
+
+## 配置环境变量
+
+## 新建数据文件夹
+	在dataLogDir指定的目录下，创建一个myid文件，里面的内容为一个数字，用来标识当前的主机，
+	conf/zoo.cfg文件中配置的X为什么数字，则myid文件中就为什么数字。
+
+# hive 1.2.1
+
 
 
 	
