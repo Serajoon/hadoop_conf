@@ -12,27 +12,24 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-	<property>
-		<name>mapreduce.framework.name</name>
-		<value>yarn</value>
-	</property>
-	<property>
-		   
-		<name>mapreduce.jobhistory.address</name>
-		     
-		<value>master.hadoop:10020</value>
-		   
-	</property>
-	   
-	<property>
-		   
-		<name>mapreduce.jobhistory.webapp.address</name>
-		     
-		<value>>master.hadoop:19888</value>
-		   
-	</property>
-	<property>
-		<name>yarn.app.mapreduce.am.staging-dir</name>
-		<value>/home/hanmeng/hadoop/datafile/tmp/hadoop-yarn/staging</value>
-	</property>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.address</name>
+        <value>master.hadoop:10020</value>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.webapp.address</name>
+        <value>>master.hadoop:19888</value>
+    </property>
+    <property>
+        <name>yarn.app.mapreduce.am.staging-dir</name>
+        <value>/home/hanmeng/hadoop/datafile/tmp/hadoop-yarn/staging</value>
+    </property>
+    <property>
+        <name>mapreduce.cluster.local.dir</name>
+        <value>/home/hanmeng/hadoop/datafile/tmp/hadoop-yarn/staging</value>
+    </property>
 </configuration>

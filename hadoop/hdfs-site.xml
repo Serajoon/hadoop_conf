@@ -17,26 +17,38 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-<property>
-	<name>dfs.namenode.name.dir</name>
-		<value>file:/home/hanmeng/hadoop/datafile/dfs/name</value>
-		<final>true</final>
-	</property>
-	<property>
-		<name>dfs.datanode.data.dir</name>
-		<value>file:/home/hanmeng/hadoop/datafile/dfs/data</value>
-		<final>true</final>
-	</property>
-	<property>
-		<name>dfs.replication</name>
-		<value>1</value>
-	</property>
-	<property>  
-		<name>dfs.namenode.secondary.http-address</name>  
-		<value>master.hadoop:9001</value>  
-	</property>
-	<property>
-		<name>dfs.webhdfs.enabled</name>
-		<value>true</value>
-	</property> 
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>file:/home/hanmeng/hadoop/datafile/dfs/name</value>
+        <final>true</final>
+    </property>
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>file:/home/hanmeng/hadoop/datafile/dfs/data</value>
+        <final>true</final>
+    </property>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+    <property>
+        <name>dfs.namenode.secondary.http-address</name>
+        <value>master.hadoop:9001</value>
+    </property>
+    <property>
+        <name>dfs.webhdfs.enabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>dfs.webhdfs.enabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>dfs.permissions.enabled</name>
+        <value>false</value>
+    </property>
+    <property>
+        <name>dfs.datanode.max.transfer.threads</name>
+        <value>8192</value>
+    </property>
 </configuration>
