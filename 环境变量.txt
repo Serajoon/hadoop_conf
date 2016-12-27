@@ -1,0 +1,36 @@
+#java
+export JAVA_HOME=/usr/java/jdk1.7.0_79
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin
+
+#hadoop
+export HADOOP_HOME=/home/hanmeng/hadoop/hadoop-2.7.2
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+
+#zookeeper
+export ZOOKEEPER=/home/hanmeng/hadoop/zookeeper-3.4.6
+export PATH=$PATH:$ZOOKEEPER/bin
+
+#hbase
+export HBASE=/home/hanmeng/hadoop/hbase-1.1.2
+export PATH=$PATH:$HBASE/bin
+
+#hive
+export HIVE_HOME=/home/hanmeng/hadoop/hive-1.2.1
+export PATH=$PATH:$HIVE_HOME/bin
+
+#sqoop
+export SQOOP_HOME=/home/hanmeng/hadoop/sqoop1.4.6
+export PATH=$PATH:$SQOOP_HOME/bin
+
+#flume
+export FLUME_HOME=/home/hanmeng/hadoop/flume-1.7
+export PATH=$PATH:$FLUME_HOME/bin
+
+#kylin
+export KYLIN_HOME=/home/hanmeng/hadoop/kylin-1.5.1
+export PATH=$PATH:$KYLIN_HOME/bin:
+export hive_dependency=$HIVE_HOME/conf:$HIVE_HOME/lib/*:$HIVE_HOME/hcatalog/share/hcatalog/hive-hcatalog-core-1.2.1.jar
+export HCAT_HOME=$HIVE_HOME/hcatalog
+
+export PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL
