@@ -54,4 +54,9 @@
 		<name>dfs.datanode.max.transfer.threads</name>
 		<value>8192</value>
 	</property>
+	<property>
+		<name>dfs.blocksize</name>
+		<value>268435456</value>
+		<description>HDFS块大小，单位字节B,大型的文件系统HDFS块大小为256MB</description>
+	</property>
 </configuration>
