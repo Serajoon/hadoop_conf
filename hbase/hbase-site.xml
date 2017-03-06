@@ -1,64 +1,189 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-<!--
-/**
- *
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
--->
 <configuration>
-    <property>
-        <name>hbase.rootdir</name>
-        <value>hdfs://master:9000/hbase</value>
-    </property>
-    <property>
-        <name>hbase.cluster.distributed</name>
-        <value>true</value>
-    </property>
-    <property>
-        <name>hbase.zookeeper.quorum</name>
-        <value>master,slave1,slave2</value>
-    </property>
-    <property>
-        <name>hbase.tmp.dir</name>
-        <value>/home/hanmeng/hadoop/datafile/hbase/tmp</value>
-    </property>
-    <property>
-        <name>hbase.master</name>
-        <value>hdfs://master:60000</value>
-    </property>
-    <property>
-        <name>hbase.zookeeper.property.dataDir</name>
-        <value>/home/hanmeng/hadoop/datafile/zookeeper/data</value>
-    </property>
-    <property>
-        <name>hbase.master.info.port</name>
-        <value>60010</value>
-    </property>
-    <property>
-        <name>hbase.client.scanner.timeout.period</name>
-        <value>6000000</value>
-    </property>
-    <property>
-        <name>hbase.cells.scanned.per.heartbeat.check</name>
-        <value>1000000</value>
-    </property>
-    <property>
-        <name>phoenix.query.maxGlobalMemoryPercentage</name>
-        <value>40</value>
-    </property>
+	<property>
+		<name>hbase.rootdir</name>
+		<value>hdfs://master:8020/hbase</value>
+		<description>
+			HBase集群所有regionserver共享目录，用来持久化HBase数据，一般设置的是hdfs文件目录。
+		</description>
+	</property>
+	<property>
+		<name>hbase.cluster.distributed</name>
+		<value>true</value>
+		<description>
+			是否是集群模式，分布式还是单机模式，默认值false单机模式。若为false,Hbase和Zookeeper会运行在同一个JVM里面
+		</description>
+	</property>
+	<property>
+		<name>hbase.tmp.dir</name>
+		<value>/home/xx/hadoop/datafile/hbase/tmp</value>
+		<description>
+			本地文件系统的临时文件夹。可以修改到一个更为持久的目录上。(/tmp会在重启时清空),默认: /tmp/hbase-${user.name}
+		</description>
+	</property>
+	<property>
+		<name>hbase.master</name>
+		<value>16000</value>
+		<description>Hbase的Master的端口</description>
+	</property>
+	<property>
+		<name>hbase.master.info.port</name>
+		<value>16010</value>
+		<description>HBase Master web 界面端口。设置为-1 意味着你不想让他运行。默认值16010</description>
+	</property>
+	<property>
+		<name>hbase.regionserver.port</name>
+		<value>16020</value>
+		<description>
+			HBase RegionServer绑定的端口，默认值16020
+		</description>
+	</property>
+	<property>
+		<name>hbase.regionserver.info.port</name>
+		<value>16030</value>
+		<description>
+			HBase RegionServer web 界面绑定的端口 设置为 -1 意味这你不想运行 RegionServer界面，默认值16030
+		</description>
+	</property>
+
+	<!-- zookeeper相关配置 -->
+	<property>
+		<name>hbase.zookeeper.quorum</name>
+		<value>master,slave1,slave2</value>
+		<description>
+			zookeeper集群的URL配置，多个host用都好分隔
+		</description>
+	</property>
+	<property>
+		<name>zookeeper.session.timeout</name>
+		<value>1200000</value>
+		<description>
+			线上配置：1200000（20min）
+			默认值：180000（3min）
+			RegionServer与Zookeeper间的连接超时时间。当超时时间到后，ReigonServer会被Zookeeper从RS集群清单中移除，HMaster收到移除通知后，会对这台server负责的regions重新balance，让其他存活的RegionServer接管。
+		</description>
+	</property>
+	<property>
+		<name>hbase.zookeeper.property.dataDir</name>
+		<value>/home/xx/hadoop/datafile/zookeeper/data</value>
+		<description>
+			这个是ZooKeeper配置文件zoo.cfg中的dataDir。zookeeper存储数据库快照的位置
+		</description>
+	</property>
+	<property>
+		<name>hbase.zookeeper.property.clientPort</name>
+		<value>2181</value>
+		<description>
+			这个是ZooKeeper配置文件zoo.cfg中的clientPort。ZooKeeper提供给客户端连接的端口，默认是2181
+		</description>
+	</property>
+
+	<!-- 客户端参数设置超时 -->
+	<property>
+		<name>hbase.rpc.timeout</name>
+		<value>300000</value>
+		<description>
+			默认值60000，线上配置：300000（5min）
+			RPC请求timeout时间，该参数表示一次RPC请求的超时时间，单位毫秒。如果某次RPC时间超过该值，则客户端会主动关闭socket。
+			如果经常出现Java.io.IOException:Connection reset by peer异常问题，估计HBase集群出现了大量高并发读写业务或者服务器端发生了比较严重的Full
+			GC等问题，导致某些请求无法得到及时处理，超过了设置的时间间隔。
+		</description>
+	</property>
+	<property>
+		<name>hbase.client.operation.timeout</name>
+		<value></value>
+		<description>
+			默认值1200000(20分钟)
+			该参数表示HBase客户端发起一次数据操作直至得到相应之间总的超市时间，数据操作类型包括get、append、increament、delete、put等。
+			很显然，hbase.rpc.timeout表示一次RPC的超市时间，而hbase.client.operation.timeout表示一次操作的超时时间，有可能包含多个RPC请求。
+			举个例子，比如一次Put请求，客户端首先会将请求封装为一个caller对象，该对象发送RPC请求到服务器，加入此时服务器端正好发生了严重的Full
+			GC，导致这次RPC时间超时引起SocketTimeoutException，对应的就是hbase.rpc.timeout。
+			加入caller对象发送PRC请求后刚好发生了网络抖动，进而抛出网络异常，HBase客户端就会进行重试，重试多次之后如果总操作时间超时引起SocketTimeoutException，
+			hbase.client.operation.timeout
+		</description>
+	</property>
+	<property>
+		<name>hbase.client.scanner.timeout.period</name>
+		<value>240000</value>
+		<description>
+			默认值:60000(60s)
+			hbase.client.operation.timeout参数规定的超时基本涉及到了HBase所有的数据操作，唯独没有scan操作。然而scan操作确实最有可能发生超时的。
+			HBase考虑到了这一点，提供了一个单独的超时参数进行设置。HBase会将一次大的scan操作根据设置条件拆分成多个RPC请求，每次只返回规定数量的结果。
+		</description>
+	</property>
+
+	<!-- regionserver相关配置 -->
+	<property>
+		<name>hbase.regionserver.handler.count</name>
+		<value>30</value>
+		<description>
+			RegionServer端开启的RPC监听器实例个数，也就是RegionSever能够处理的IO请求线程数。提升RPC Handler的数量可以一定程度上提高HBase
+			在处理大量并发时接收请求的能力。
+			默认值30，线上配置50。
+			此参数与内存息息相关。
+		</description>
+	</property>
+	<property>
+		<name>hbase.regionserver.msginterval</name>
+		<value>3000</value>
+		<description>
+			RegionServer发消息给 Master时间间隔，单位是毫秒,默认是3s
+		</description>
+	</property>
+	<property>
+		<name>hbase.cells.scanned.per.heartbeat.check</name>
+		<value>100000</value>
+		<description>
+			默认值10000(10s),心跳消息用于在客户机-服务器连接长时间运行扫描.
+			小值意味着心跳检查会发生更频繁,因此将提供一个更严格的执行时间扫描。大值意味着心跳检查发生的频率更低
+		</description>
+	</property>
+
+	<!-- client配置 -->
+	<property>
+		<name>hbase.client.pause</name>
+		<value>100</value>
+		<description>
+			失败重试的等待时间，随着重试此时越多，重试等待时间越长，计算方式如下
+			public static int RETRY_BACKOFF[] = { 1, 2, 3, 5,
+			10, 20, 40, 100, 100, 100, 100, 200, 200 }
+			所以如果重试10次，hbase.client.pause=50ms，则每次重试等待时间为{50，100，150，250，500，1000，2000，5000，5000，5000}。
+			属性默认值为100ms,可以设置为50ms，甚至更小。
+		</description>
+	</property>
+	<property>
+		<name>hbase.client.retries.number</name>
+		<value></value>
+		<description>
+			失败重试次数，默认35次。
+		</description>
+	</property>
+	<property>
+		<name>hbase.client.scanner.caching</name>
+		<value>1000</value>
+		<description>
+			默认值2147483647(Integer.MAX_VALUE)，当调用Scanner的next方法，而值又不在缓存里的时候，从服务端一次获取的行数。
+			越大的值意味着Scanner会快一些，但是会占用更多的内存。当缓冲被占满的时候，next方法调用会越来越慢。
+			慢到一定程度，可能会导致超时。例如超过了hbase.regionserver.lease.period。
+			此配置与hbase.client.scanner.max.result.size搭配使用,理论上一次性获取越多数据就会减少RPC数，也就越高效。
+		</description>
+	</property>
+	<property>
+		<name>hbase.client.scanner.max.result.size</name>
+		<value>2097152</value>
+		<description>
+			默认值：2097152字节(2MB)，调用next()方法时返回的最大字节数。
+		</description>
+	</property>
+	<property>
+		<name>hbase.client.write.buffer</name>
+		<value>2097152</value>
+		<description>
+			默认值2097152B(2M)，线上配置：8388608（8M）
+			HTable客户端的写缓冲的默认大小。这个值越大，需要消耗的内存越大。因为缓冲在客户端和服务端都有实例，所以需要消耗客户端和服务端两个地方的内存。
+			得到的好处是，可以减少RPC的次数。可以这样估算服务器端被占用的内存：
+			hbase.client.write.buffer * hbase.regionserver.handler.count
+		</description>
+	</property>
 </configuration>
