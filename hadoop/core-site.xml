@@ -17,19 +17,11 @@
 	</property>
 	<property>
 		<name>hadoop.tmp.dir</name>
-		<value>/home/hanmeng/hadoop/datafile/tmp</value>
+		<value>/home/xx/hadoop/datafile/tmp</value>
 	</property>
 	<property>
 		<name>io.file.buffer.size</name>
-		<value>131072</value>
-		<description>缓冲区大小，单位字节B，128KB</description>
-	</property>
-	<property>
-		<name>hadoop.proxyuser.hadoop.hosts</name>
-		<value>*</value>
-	</property>
-	<property>
-		<name>hadoop.proxyuser.hadoop.groups</name>
-		<value>*</value>
+		<value>4096</value>
+		<description>缓冲区大小，单位字节B，默认4kb,一般情况下，可以设置为64KB（65536byte）</description>
 	</property>
 </configuration>
