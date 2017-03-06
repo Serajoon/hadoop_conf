@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+	<property>
+		<name>mapred.child.java.opts</name>
+		<value>-Xmx200m</value>
+		<description>
+			配置每个map或者reduce使用的内存大小，默认是200m，设置值为总内存/并发数量(内核数)
+		</description>
+	</property>
+	<property>
+		<name>mapreduce.job.maps</name>
+		<value>2</value>
+		<description>map任务数，默认是2，但是map数量由分片数决定</description>
+	</property>
+	<property>
+		<name>mapreduce.job.reduces</name>
+		<value>1</value>
+		<description>
+			reduce数量，默认1。
+		</description>
+	</property>
+	<property>
+		<name>mapreduce.framework.name</name>
+		<value>yarn</value>
+		<description>使用yarn运行mapreduce程序</description>
+	</property>
+	<property>
+		<name>mapreduce.jobhistory.address</name>
+		<value>master:10020</value>
+		<description>MapReduce JobHistory Server地址</description>
+	</property>
+	<property>
+		<name>mapreduce.jobhistory.webapp.address</name>
+		<value>>master:19888</value>
+		<description>MapReduce JobHistory Server Web UI地址</description>
+	</property>
+	<property>
+		<name>yarn.app.mapreduce.am.staging-dir</name>
+		<value>/home/hanmeng/hadoop/datafile/tmp/hadoop-yarn/staging</value>
+	</property>
+	<property>
+		<name>mapreduce.cluster.local.dir</name>
+		<value>/home/hanmeng/hadoop/datafile/tmp/hadoop-yarn/staging</value>
+	</property>
+	<property>
+		<name>mapreduce.map.memory.mb</name>
+		<value>1024</value>
+		<description>每个MapReduce作业的reduce任务可以申请的内存资源数量默认值1024M</description>
+	</property>
+	<property>
+		<name>mapreduce.reduce.memory.mb</name>
+		<value>1024</value>
+		<description>每个MapReduce作业的map任务可以申请的内存资源数量默认值1024M</description>
+	</property>
+</configuration>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<configuration>
+	<!-- resourcemanager -->
+	<property>
+		<name>yarn.resourcemanager.hostname</name>
+		<value>master</value>
+		<description>运行ResourceManager机器所在的节点位置</description>
+	</property>
+	<property>
+		<name>yarn.resourcemanager.address</name>
+		<value>master:8032</value>
+		<description>
+			${yarn.resourcemanager.hostname}:8032。ResourceManager
+			对客户端暴露的地址。客户端通过该地址向RM提交应用程序，杀死应用程序等
+		</description>
+	</property>
+	<!-- nodemanager -->
+	<property>
+		<name>yarn.nodemanager.aux-services</name>
+		<value>mapreduce_shuffle</value>
+	</property>
+	<property>
+		<name>yarn.nodemanager.resource.memory-mb</name>
+		<value>8192</value>
+		<description>
+			NodeManager总的可用物理内存。注意，该参数是不可修改的，一旦设置，整个运行过程中不可动态修改。
+			另外，该参数的默认值是8192MB，即使你的机器内存不够8192MB，YARN也会按照这些内存来使用（傻不傻？），因此，这个值通过一定要配置
+		</description>
+	</property>
+	<property>
+		<name>yarn.nodemanager.vmem-check-enabled</name>
+		<value>false</value>
+		<description>Whether virtual memory limits will be enforced for containers</description>
+	</property>
+	<property>
+		<name>yarn.nodemanager.vmem-pmem-ratio</name>
+		<value>4</value>
+		<description>
+			每使用1MB物理内存，最多可用的虚拟内存数,默认值2.1
+		</description>
+	</property>
+</configuration>
