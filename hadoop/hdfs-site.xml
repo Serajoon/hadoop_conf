@@ -1,62 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-<!-- Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except 
-	in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
-	Unless required by applicable law or agreed to in writing, software distributed under the License is 
-	distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
-	See the License for the specific language governing permissions and limitations under the License. See 
-	accompanying LICENSE file. -->
-
-<!-- Put site-specific property overrides in this file. -->
-
 <configuration>
-	<property>
-		<name>dfs.namenode.name.dir</name>
-		<value>file:/home/hanmeng/hadoop/datafile/dfs/name</value>
-		<final>true</final>
-		<description>
-			NameNode存储命名空间和操作日志相关的元数据信息的本地文件系统目录，该项默认本地路径为/tmp/hadoop-{username}/dfs/name
-		</description>
-	</property>
-	<property>
-		<name>dfs.datanode.data.dir</name>
-		<value>file:/home/hanmeng/hadoop/datafile/dfs/data</value>
-		<final>true</final>
-		<description>
-			DataNode节点存储HDFS文件的本地文件系统目录，由file://本地目录”组成,该项默认本地路径为/tmp/hadoop-{username}/dfs/data
-		</description>
-	</property>
-	<property>
-		<name>dfs.replication</name>
-		<value>1</value>
-	</property>
-	<property>
-		<name>dfs.http.address</name>
-		<value>master:50070</value>
-		<description>指定NameNode的Web Server位置</description>
-	</property>
-	<property>
-		<name>dfs.namenode.secondary.http-address</name>
-		<value>slave1.hadoop:50090</value>
-		<description>
-			secondaryNameNode与namenode配置在不同的机器上。如果无需额外指定SecondNameNode角色，可以不进行此项配置
-		</description>
-	</property>
-	<property>
-		<name>dfs.webhdfs.enabled</name>
-		<value>true</value>
-	</property>
-	<property>
-		<name>dfs.permissions.enabled</name>
-		<value>false</value>
-	</property>
-	<property>
-		<name>dfs.datanode.max.transfer.threads</name>
-		<value>8192</value>
-	</property>
-	<property>
-		<name>dfs.blocksize</name>
-		<value>268435456</value>
-		<description>HDFS块大小，单位字节B,大型的文件系统HDFS块大小为256MB</description>
-	</property>
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>file:/home/hanmeng/hadoop/datafile/dfs/name</value>
+        <final>true</final>
+        <description>
+            NameNode存储命名空间和操作日志相关的元数据信息的本地文件系统目录，该项默认本地路径为/tmp/hadoop-{username}/dfs/name
+        </description>
+    </property>
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>file:/home/hanmeng/hadoop/datafile/dfs/data</value>
+        <final>true</final>
+        <description>
+            DataNode节点存储HDFS文件的本地文件系统目录，由file://本地目录”组成,该项默认本地路径为/tmp/hadoop-{username}/dfs/data
+        </description>
+    </property>
+    <property>
+        <name>dfs.http.address</name>
+        <value>master:50070</value>
+        <description>指定NameNode的Web Server位置</description>
+    </property>
+    <property>
+        <name>dfs.namenode.secondary.http-address</name>
+        <value>slave1.hadoop:50090</value>
+        <description>
+            secondaryNameNode与namenode配置在不同的机器上。如果无需额外指定SecondNameNode角色，可以不进行此项配置
+        </description>
+    </property>
+    <property>
+        <name>dfs.webhdfs.enabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>dfs.permissions.enabled</name>
+        <value>false</value>
+    </property>
+    <property>
+        <name>dfs.datanode.max.transfer.threads</name>
+        <value>8192</value>
+    </property>
+    <!--HDFS-数据存储-->
+    <property>
+        <name>dfs.replication</name>
+        <value>3</value>
+        <description>块副本数</description>
+    </property>
+    <property>
+        <name>dfs.blocksize</name>
+        <value>134217728</value>
+        <description>HDFS块大小，单位字节B,大型的文件系统HDFS块大小为256MB,如果128MB则需设置为134217728</description>
+    </property>
 </configuration>
