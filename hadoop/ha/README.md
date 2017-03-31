@@ -1,7 +1,7 @@
 #  Hadoop HA集群配置
 
 ## HA架构
-![Alt text](../img/framework.png)
+![Alt text](img/framework.png)
 
 ## 集群规划
 
