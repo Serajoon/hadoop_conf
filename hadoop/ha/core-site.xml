@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <!--不用加端口 名称与HA配置hdfs-site.xml中的dfs.nameservices必须保持一致-->
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://ns</value>
+    </property>
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/home/grid/hadoop-2.7.2/hdfs/tmp</value>
+    </property>
+    <property>
+        <name>io.file.buffer.size</name>
+        <value>131072</value>
+    </property>
+    <property>
+        <name>fs.checkpoint.period</name>
+        <value>3600</value>
+        <description>The number of seconds between two periodic checkpoints.
+        </description>
+    </property>
+    <property>
+        <name>fs.checkpoint.size</name>
+        <value>67108864</value>
+    </property>
+    <property>
+        <name>io.compression.codecs</name>
+        <value>
+            org.apache.hadoop.io.compress.GzipCodec,
+            org.apache.hadoop.io.compress.DefaultCodec,
+            org.apache.hadoop.io.compress.BZip2Codec,
+            org.apache.hadoop.io.compress.SnappyCodec
+        </value>
+    </property>
+    <property>
+        <name>ha.zookeeper.quorum</name>
+        <value>master:2181,slave1:2181,slave2:2181</value>
+    </property>
+</configuration>

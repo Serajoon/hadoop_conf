@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>/home/grid/hadoop-2.7.2/hdfs/name</value>
+    </property>
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>/home/grid/hadoop-2.7.2/hdfs/data</value>
+    </property>
+    <property>
+        <name>dfs.replication</name>
+        <value>2</value>
+    </property>
+    <property>
+        <name>dfs.namenode.secondary.http-address</name>
+        <value>slave1:50090</value>
+    </property>
+    <property>
+        <name>dfs.webhdfs.enabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>dfs.permissions.enabled</name>
+        <value>false</value>
+    </property>
+    <property>
+        <name>dfs.datanode.max.transfer.threads</name>
+        <value>8192</value>
+    </property>
+    <!--HDFS-数据存储-->
+    <property>
+        <name>dfs.replication</name>
+        <value>3</value>
+        <description>块副本数</description>
+    </property>
+    <property>
+        <name>dfs.blocksize</name>
+        <value>134217728</value>
+        <description>HDFS块大小，单位字节B,大型的文件系统HDFS块大小为256MB,如果128MB则需设置为134217728</description>
+    </property>
+
+
+    <!--**********HA相关配置**********-->
+    <!--HDFS NameNode的逻辑名 需要和core-site.xml中的fs.defaultFS保持一致-->
+    <property>
+        <name>dfs.nameservices</name>
+        <value>ns</value>
+    </property>
+    <!--指定nameservices的两个namenode名称分别为nn1,nn2 -->
+    <property>
+        <name>dfs.ha.namenodes.ns</name>
+        <value>nn1,nn2</value>
+    </property>
+    <!-- nn1和nn2的RPC通信地址 -->
+    <property>
+        <name>dfs.namenode.rpc-address.ns.nn1</name>
+        <value>master:8020</value>
+    </property>
+    <property>
+        <name>dfs.namenode.rpc-address.ns.nn2</name>
+        <value>slave1:8020</value>
+    </property>
+    <!-- nn1和nn2的http通信地址 -->
+    <property>
+        <name>dfs.namenode.http-address.ns.nn1</name>
+        <value>master:50070</value>
+    </property>
+    <property>
+        <name>dfs.namenode.http-address.ns.nn2</name>
+        <value>slave1:50070</value>
+    </property>
+    <!-- 开启namenode故障时自动转移 -->
+    <property>
+        <name>dfs.ha.automatic-failover.enabled</name>
+        <value>true</value>
+    </property>
+    <!--指定JournalNode -->
+    <property>
+        <name>dfs.namenode.shared.edits.dir</name>
+        <value>qjournal://master:8485;slave1:8485;slave2:8485/ns</value>
+    </property>
+    <property>
+        <name>dfs.journalnode.edits.dir</name>
+        <value>/home/grid/hadoop-2.7.2/hdfs/jndata</value>
+    </property>
+    <!-- 配置失败自动切换实现方式 -->
+    <property>
+        <name>dfs.client.failover.proxy.provider.ns</name>
+        <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+    </property>
+    <!-- 配置隔离机制 -->
+    <property>
+        <name>dfs.ha.fencing.methods</name>
+        <value>sshfence</value>
+    </property>
+    <!-- 使用隔离机制时需要ssh免登陆 -->
+    <property>
+        <name>dfs.ha.fencing.ssh.private-key-files</name>
+        <value>/home/grid/.ssh/id_rsa</value>
+    </property>
+    <property>
+        <name>dfs.ha.fencing.ssh.connect-timeout</name>
+        <value>10000</value>
+    </property>
+    <property>
+        <name>dfs.namenode.handler.count</name>
+        <value>100</value>
+    </property>
+</configuration>
