@@ -8,7 +8,7 @@
     </property>
     <property>
         <name>hadoop.tmp.dir</name>
-        <value>file:///home/xx/hadoop/datafile/tmp</value>
+        <value>/home/xx/hadoop/datafile/tmp</value>
     </property>
     <property>
         <name>io.file.buffer.size</name>
