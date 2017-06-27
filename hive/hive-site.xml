@@ -16,14 +16,14 @@
    limitations under the License.
 -->
 <configuration>
-	<property>  
-		<name>hive.metastore.local</name>  
-		<value>false</value>  
-	</property>
-	<property>  
-		<name>hive.metastore.uris</name>  
-		<value>thrift://210.25.24.68:9083</value>  
-	</property>
+    <property>  
+	<name>hive.metastore.local</name>  
+	<value>false</value>  
+    </property>
+    <property>  
+	<name>hive.metastore.uris</name>  
+	<value>thrift://210.25.24.68:9083</value>  
+    </property>
     <property>
         <name>hive.metastore.warehouse.dir</name>
         <value>/hive/warehouse</value>
