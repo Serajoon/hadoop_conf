@@ -25,6 +25,7 @@
 		<description>
 			NodeManager总的可用物理内存。注意，该参数是不可修改的，一旦设置，整个运行过程中不可动态修改。
 			另外，该参数的默认值是8192MB，即使你的机器内存不够8192MB，YARN也会按照这些内存来使用（傻不傻？），因此，这个值通过一定要配置
+			对应yarn页面的Memory Total大小
 		</description>
 	</property>
 	<property>
@@ -37,6 +38,13 @@
 		<value>4</value>
 		<description>
 			每使用1MB物理内存，最多可用的虚拟内存数,默认值2.1
+		</description>
+	</property>
+	<property>
+		<name>yarn.nodemanager.resource.cpu-vcores</name>
+		<value>8</value>
+		<description>
+			当前机器可以启动的Yarn container的数量，建议配置为当前机器的cpu的线程数的80%。默认是8
 		</description>
 	</property>
 </configuration>
