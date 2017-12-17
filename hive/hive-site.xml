@@ -16,87 +16,54 @@
    limitations under the License.
 -->
 <configuration>
-    <property>  
-	<name>hive.metastore.local</name>  
-	<value>false</value>  
-    </property>
-    <property>  
-	<name>hive.metastore.uris</name>  
-	<value>thrift://210.25.24.68:9083</value>  
-    </property>
     <property>
         <name>hive.metastore.warehouse.dir</name>
         <value>/hive/warehouse</value>
+        <description>Hive在HDFS上数据存储目录，默认值是/user/hive/warehouse</description>
     </property>
-
     <property>
         <name>hive.exec.scratchdir</name>
         <value>/hive/scratchdir</value>
-    </property>
-
-    <property>
-        <name>hive.querylog.location</name>
-        <value>/home/hanmeng/hadoop/datafile/hive/log</value>
-    </property>
-
-    <property>
-        <name>javax.jdo.option.ConnectionURL</name>
-        <value>jdbc:mysql://210.25.24.56:3306/hive?createDatabaseIfNotExist=true</value>
-    </property>
-
-    <property>
-        <name>javax.jdo.option.ConnectionDriverName</name>
-        <value>com.mysql.jdbc.Driver</value>
-    </property>
-
-    <property>
-        <name>javax.jdo.option.ConnectionUserName</name>
-        <value>hive</value>
-    </property>
-
-    <property>
-        <name>javax.jdo.option.ConnectionPassword</name>
-        <value>mysql</value>
-    </property>
-
-    <property>
-        <name>hive.hwi.listen.host</name>
-        <value>0.0.0.0</value>
-    </property>
-    <property>
-        <name>hive.hwi.listen.port</name>
-        <value>9999</value>
-    </property>
-    <property>
-        <name>hive.hwi.war.file</name>
-        <value>lib/hive-hwi-1.2.1.war</value>
-    </property>
-    <property>
-        <name>hbase.zookeeper.quorum</name>
-        <value>master,slave1,slave2</value>
+        <description>Hive在HDFS上的临时文件目录，默认值是/tmp/hive-${user.name}</description>
     </property>
     <property>
         <name>hive.metastore.uris</name>
         <value>thrift://master:9083</value>
+        <description>
+            指定hive元数据访问路径，客户端连接metastore服务，metastore再去连接MySQL数据库来存取元数据。
+            有了metastore服务，就可以有多个客户端同时连接，而且这些客户端不需要知道MySQL数据库的用户名和密码，
+            只需要连接metastore服务即可
+        </description>
+    </property>
+    <property>
+        <name>hive.querylog.location</name>
+        <value>/home/hanmeng/hadoop/datafile/hive/log</value>
+        <description>Hive查询日志目录</description>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionURL</name>
+        <value>jdbc:mysql://210.25.24.56:3306/hive?createDatabaseIfNotExist=true</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionDriverName</name>
+        <value>com.mysql.jdbc.Driver</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionUserName</name>
+        <value>hive</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionPassword</name>
+        <value>mysql</value>
     </property>
     <property>
         <name>hive.server2.thrift.port</name>
         <value>10000</value>
+        <description>hiveserver2的TCP的监听端口，默认为10000</description>
     </property>
     <property>
         <name>hive.server2.thrift.bind.host</name>
         <value>master</value>
-    </property>
-    <property>
-        <name>hive.server2.authentication</name>
-        <value>CUSTOM</value>
-    </property>
-    <property>
-        <name>hive.server2.custom.authentication.class</name>
-        <value>com.serajoon.CustomHiveServer2Auth</value>
-    </property>
-    <property>
-        <name>hive.server2.custom.authentication.file</name>
-        <value>/home/hanmeng/hadoop/hive-1.2.1/conf/hive.server2.users.conf</value>
+        <description>TCP绑定的主机，默认为localhost</description>
     </property>
 </configuration>
