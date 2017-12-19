@@ -6,6 +6,7 @@
         <value>file:/home/hanmeng/hadoop/datafile/dfs/name</value>
         <final>true</final>
         <description>
+		    *******需要自己手动创建目录，否则启动报错
             NameNode存储命名空间和操作日志相关的元数据信息的本地文件系统目录，该项默认本地路径为/tmp/hadoop-{username}/dfs/name
         </description>
     </property>
