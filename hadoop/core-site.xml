@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://master:8020</value>
+        <description>NameNode节点地址</description>
+    </property>
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/home/xx/hadoop/datafile/tmp</value>
+    </property>
+    <property>
+        <name>io.file.buffer.size</name>
+        <value>4096</value>
+        <description>缓冲区大小，单位字节B，默认4kb,一般情况下，可以设置为64KB（65536byte）</description>
+    </property>
+</configuration>

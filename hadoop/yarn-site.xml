@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<configuration>
+	<!-- resourcemanager -->
+	<property>
+		<name>yarn.resourcemanager.hostname</name>
+		<value>master</value>
+		<description>运行ResourceManager机器所在的节点位置</description>
+	</property>
+	<property>
+		<name>yarn.resourcemanager.address</name>
+		<value>master:8032</value>
+		<description>
+			${yarn.resourcemanager.hostname}:8032。ResourceManager
+			对客户端暴露的地址。客户端通过该地址向RM提交应用程序，杀死应用程序等
+		</description>
+	</property>
+	<!-- nodemanager -->
+	<property>
+		<name>yarn.nodemanager.aux-services</name>
+		<value>mapreduce_shuffle</value>
+	</property>
+	<property>
+		<name>yarn.nodemanager.resource.memory-mb</name>
+		<value>8192</value>
+		<description>
+			单个NodeManager能分配可用的最大内存，yarn页面显示的是所有NodeManager的总和。注意，该参数是不可修改的，一旦设置，整个运行过程中不可动态修改。
+			另外，该参数的默认值是8192MB，即使你的机器内存不够8192MB，YARN也会按照这些内存来使用（傻不傻？），因此，这个值通过一定要配置
+			对应yarn页面的Memory Total大小
+		</description>
+	</property>
+	<property>
+		<name>yarn.nodemanager.vmem-check-enabled</name>
+		<value>false</value>
+		<description>Whether virtual memory limits will be enforced for containers</description>
+	</property>
+	<property>
+		<name>yarn.nodemanager.vmem-pmem-ratio</name>
+		<value>4</value>
+		<description>
+			每使用1MB物理内存，最多可用的虚拟内存数,默认值2.1
+		</description>
+	</property>
+	<property>
+		<name>yarn.nodemanager.resource.cpu-vcores</name>
+		<value>8</value>
+		<description>
+			单个NodeManager可用虚拟CPU个数。yarn页面为所有的和
+			建议配置为当前机器的cpu的线程数的80%或者将该值设值为与物理CPU核数数目相同。默认是8。
+			如果你的节点CPU核数不够8个，则需要调减小这个值，而YARN不会智能的探测节点的物理CPU总数。
+		</description>
+	</property>
+</configuration>
